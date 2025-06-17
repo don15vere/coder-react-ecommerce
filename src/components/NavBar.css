@@ -1,0 +1,27 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  margin-left: 0.5rem;
+}
+
+.logo-text span:first-child {
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.logo-text span:last-child {
+  font-size: 0.9rem;
+  color: #666;
+}
