@@ -1,11 +1,14 @@
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
+import { withLogging } from './hoc/withLogging';
+
+const ItemListContainerWithLogging = withLogging(ItemListContainer);
 
 function App() {
   return (
     <>
       <NavBar />
-      <ItemListContainer saludo="¡Bienvenido a Random Experience!" />
+      <ItemListContainerWithLogging saludo="¡Bienvenido a la tienda Pokémon!" />
     </>
   );
 }
