@@ -4,7 +4,7 @@ import LoaderRender from './LoaderRender';
 import { useFetchItems } from '../hooks/useFetchItems';
 
 export default function ItemListContainer({ saludo }) {
-  const { items, loading } = useFetchItems('https://pokeapi.co/api/v2/pokemon?limit=12');
+  const { items, loading } = useFetchItems(null, 8);
 
   return (
     <div className="item-list-container">

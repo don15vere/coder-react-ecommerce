@@ -2,7 +2,7 @@ import ItemListContainer from '../components/ItemListContainer';
 import { withLogging } from '../hoc/withLogging';
 
 const Home = withLogging(() => (
-  <ItemListContainer greeting="¡Bienvenido a la tienda Pokémon!" />
+  <ItemListContainer saludo="¡Bienvenido a Random Experience!" cant='10'/>
 ));
 
 export default Home;

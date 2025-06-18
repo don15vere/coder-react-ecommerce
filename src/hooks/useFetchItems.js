@@ -1,24 +1,17 @@
 import { useState, useEffect } from 'react';
+import { getItems } from '../services/getItems';
 
-export function useFetchItems(apiUrl) {
+export function useFetchItems(category = null, cant = 12) {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        const result = data.results.map((p, i) => ({
-          id: i + 1,
-          nombre: p.name,
-          precio: (Math.random() * 10000).toFixed(0),
-          imgUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`,
-        }));
-        setItems(result);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, [apiUrl]);
+    setLoading(true);
+    getItems({ category, cant }).then((data) => {
+      setItems(data);
+      setLoading(false);
+    });
+  }, [category]);
 
   return { items, loading };
 }

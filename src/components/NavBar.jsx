@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import CartWidget from "./CartWidget";
 import "./NavBar.css";
-import logo from "../assets/random-experience-logo-64.png"; // Adjust the path as necessary
+import logo from "../assets/random-experience-logo-64.png";
 
 export default function NavBar() {
   return (
@@ -26,6 +26,23 @@ export default function NavBar() {
               Productos
             </Link>
           </li>
+
+          <li className="nav-item dropdown">
+            <span
+              className="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+            >
+              Categorías
+            </span>
+            <ul className="dropdown-menu">
+                <li><Link className="dropdown-item" to="/categoria/hierba">Hierba</Link></li>
+                <li><Link className="dropdown-item" to="/categoria/agua">Agua</Link></li>
+                <li><Link className="dropdown-item" to="/categoria/fuego">Fuego</Link></li>
+                <li><Link className="dropdown-item" to="/categoria/bicho">Bicho</Link></li>
+            </ul>
+          </li>
+
           <li className="nav-item">
             <Link to="/contacto" className="nav-link">
               Contacto
