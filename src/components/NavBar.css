@@ -25,3 +25,14 @@
   font-size: 0.9rem;
   color: #666;
 }
+
+.logo-brand {
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+}
