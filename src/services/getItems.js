@@ -1,5 +1,13 @@
+let cache = null;
+
 export function getItems({ category = null, id = null, cant = 12 } = {}) {
   return new Promise((resolve) => {
+    
+    if (cache) {
+      resolve(filtrar(cache, { category, id }));
+      return;
+    }
+
     setTimeout(() => {
       fetch(`https://pokeapi.co/api/v2/pokemon?limit=${cant}`)
         .then((res) => res.json())
@@ -15,21 +23,25 @@ export function getItems({ category = null, id = null, cant = 12 } = {}) {
             return {
               id: idNum.toString(),
               nombre: p.name,
-              precio: (Math.random() * 10000).toFixed(0),
+              precio: parseInt(Math.random() * 10000), 
               imgUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${idNum}.png`,
               category: tipo
             };
           });
 
-          if (id) {
-            resolve(productos.find((prod) => prod.id === id));
-          } else if (category) {
-            const filtrados = productos.filter((prod) => prod.category === category);
-            resolve(filtrados);
-          } else {
-            resolve(productos);
-          }
+          cache = productos;
+          resolve(filtrar(productos, { category, id }));
         });
     }, 1000);
   });
+}
+
+function filtrar(productos, { category, id }) {
+  if (id) {
+    return productos.find((prod) => prod.id === id);
+  } else if (category) {
+    return productos.filter((prod) => prod.category === category);
+  } else {
+    return productos;
+  }
 }

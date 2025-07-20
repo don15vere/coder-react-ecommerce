@@ -1,7 +1,8 @@
 import './ItemList.css';
 import Item from './Item';
+import React from 'react';
 
-export default function ItemList({ items }) {
+function ItemList({ items }) {
   return (
     <div className="item-list">
         {items.map((item) => (
@@ -10,3 +11,5 @@ export default function ItemList({ items }) {
     </div>
   );
 }
+
+export default React.memo(ItemList);

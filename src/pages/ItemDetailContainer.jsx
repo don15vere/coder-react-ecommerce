@@ -1,17 +1,31 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ItemDetail from '../components/ItemDetail';
-import { getItems } from '../services/getItems'; // ✅ importamos desde servicios
+import { getItems } from '../services/getItems';
+import LoaderRender from '../components/LoaderRender';
 
 export default function ItemDetailContainer() {
   const { itemId } = useParams();
   const [producto, setProducto] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getItems({ id: itemId }).then(setProducto);
-  }, [itemId]);
+  setLoading(true);
+  getItems({ id: itemId })
+    .then((producto) => {
+      if (!producto) throw new Error('Producto no encontrado');
+      setProducto(producto);
+    })
+    .catch((err) => {
+      console.error(err);
+      setProducto(null);
+    })
+    .finally(() => setLoading(false));
+}, [itemId]);
 
-  if (!producto) return <p className="text-center mt-5">Cargando detalle...</p>;
-
-  return <ItemDetail item={producto} />;
+  return (
+    <LoaderRender data={producto} loading={loading}>
+      {(item) => <ItemDetail item={item} />}
+    </LoaderRender>
+  );
 }

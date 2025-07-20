@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
+import React from 'react';
 import './Item.css';
 
-export default function Item({ item }) {
+function Item({ item }) {
   return (
     <div className="card text-center">
       <img src={item.imgUrl} className="card-img-top" alt={item.nombre} />
@@ -15,3 +16,5 @@ export default function Item({ item }) {
     </div>
   );
 }
+
+export default React.memo(Item);
