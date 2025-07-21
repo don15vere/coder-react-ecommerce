@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import CartWidget from "./CartWidget";
 import CartModal from "./CartModal";
+import CheckoutModal from "./CheckoutModal";
 import "./NavBar.css";
 import logo from "../assets/random-experience-logo-64.png";
 
 export default function NavBar() {
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
   return (
     <>
@@ -42,16 +44,16 @@ export default function NavBar() {
               </span>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/categoria/hierba">Hierba</Link>
+                  <Link className="dropdown-item" to="/categoria/botas">Botas</Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/categoria/agua">Agua</Link>
+                  <Link className="dropdown-item" to="/categoria/vestimenta">Vestimenta</Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/categoria/fuego">Fuego</Link>
+                  <Link className="dropdown-item" to="/categoria/camping">Camping</Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/categoria/bicho">Bicho</Link>
+                  <Link className="dropdown-item" to="/categoria/carpa">Carpa</Link>
                 </li>
               </ul>
             </li>
@@ -73,7 +75,17 @@ export default function NavBar() {
       </nav>
 
       {mostrarCarrito && (
-        <CartModal onClose={() => setMostrarCarrito(false)} />
+        <CartModal
+          onClose={() => setMostrarCarrito(false)}
+          onFinalizar={() => {
+            setMostrarCarrito(false);
+            setMostrarFormulario(true);
+          }}
+        />
+      )}
+
+      {mostrarFormulario && (
+        <CheckoutModal onClose={() => setMostrarFormulario(false)} />
       )}
     </>
   );

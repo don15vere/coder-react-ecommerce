@@ -3,6 +3,7 @@ import ItemCount from './ItemCount.jsx';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext.jsx';
 import './ItemDetail.css';
+import { getImageUrl } from '../utils/getImageUrl';
 
 export default function ItemDetail({ item }) {
   const [mensaje, setMensaje] = useState('');
@@ -18,7 +19,11 @@ export default function ItemDetail({ item }) {
   return (
     <div className="item-detail container mt-4">
       <h2>{item.nombre}</h2>
-      <img src={item.imgUrl} alt={item.nombre} className="img-fluid" />
+      <img
+        src={getImageUrl(item.imgNombre, 'L')}
+        alt={item.nombre}
+        className="img-fluid"
+      />
       <p>Precio: ${item.precio}</p>
 
       <ItemCount stock={5} initial={1} onAdd={handleAdd} />

@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext.jsx';
 
-export default function CartModal({ onClose }) {
-  const { cart, clearCart } = useContext(CartContext);
+export default function CartModal({ onClose, onFinalizar }) {
 
+  const { cart, clearCart } = useContext(CartContext);
   const total = cart.reduce((acc, item) => acc + item.precio * item.quantity, 0);
 
   return (
@@ -43,6 +43,9 @@ export default function CartModal({ onClose }) {
                 Vaciar carrito
               </button>
             )}
+            <button className="btn btn-success" onClick={onFinalizar}>
+                Finalizar compra
+            </button>
             <button className="btn btn-secondary" onClick={onClose}>Cerrar</button>
           </div>
 
