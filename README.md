@@ -45,7 +45,7 @@
 
 1. Cloná el repositorio:
 ```bash
-git clone https://github.com/don15vere/coder-react-ecommerce.git
+git clone https://github.com/don15vere/ProyectoFinal-Palacios.git
 ```
 
 2. Instalá las dependencias:
